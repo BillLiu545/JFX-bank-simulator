@@ -19,7 +19,9 @@ import java.util.*;
  */
 public class BankApp<T> extends Application
 {
-    private ObservableList<BankAccount> list;
+    // Create bank object
+    private Bank bank = new Bank();
+    private final ObservableList<BankAccount> list = bank.toObservableList();
     /**
      * The start method is the main entry point for every JavaFX application. 
      * It is called after the init() method has returned and after 
@@ -38,14 +40,6 @@ public class BankApp<T> extends Application
         Scene scene = new Scene(root, 450,500);
         stage.setTitle("Banking App");
         stage.setScene(scene);
-        
-        // Create a new Bank Object
-        Bank bank = new Bank();
-        bank.addAccount("Alice");
-        bank.addAccount("Bob");
-        bank.addAccount("Charlie");
-        // Convert bank into an observable list to go with a table
-        list = bank.toObservableList();
         
         // Set up the main layout
         VBox mainLayout = new VBox();
@@ -135,7 +129,6 @@ public class BankApp<T> extends Application
             }
             else
             {
-                list = bank.toObservableList();
                 table.refresh();
             }
         }));
@@ -156,7 +149,6 @@ public class BankApp<T> extends Application
             }
             else
             {
-                list = bank.toObservableList();
                 table.refresh();
             }
         }));
