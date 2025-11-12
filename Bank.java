@@ -56,6 +56,7 @@ public class Bank extends TreeMap<Integer, BankAccount>
             {
                 alert.setContentText("Insufficient funds in account with ID " 
                 + id + ". Current balance is " + currAmount + ".");
+                withdrawn = get(id);
             }
             else {
                 withdrawn = get(id);
@@ -113,12 +114,12 @@ public class Bank extends TreeMap<Integer, BankAccount>
             }
             catch (NumberFormatException err)
             {
-                return enterAccount();
+                return enterAmount();
             }
         }
         else
         {
-            return enterAccount();
+            return enterAmount();
         }
         return amount;
     }
